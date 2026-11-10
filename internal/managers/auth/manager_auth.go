@@ -31,5 +31,7 @@ func Login(t *testing.T, username, password string) models.LoginOkResponse {
 	err := json.Unmarshal(respArray, &loginResponse)
 	require.NoError(t, err)
 
+	require.NotEmpty(t, loginResponse.Token, "Авторизация не вернула токен: проверьте TEST_LOGIN и TEST_PASSWORD в .env.override")
+
 	return loginResponse
 }
